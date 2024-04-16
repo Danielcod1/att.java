@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class attjava {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite quais são os alunos(ou 'fim' para encerrar o programa):");
+        String nomeA;
+        String[] alunos = new String[100];
+        int contadorA = 0;
+
+        while (true) {
+            nomeA = scanner.nextLine();
+            if (nomeA.equalsIgnoreCase("fim")) {
+                break;
+            }
+            alunos[contadorA] = nomeA;
+            contadorA++;
+        }
+        for (int i = 0; i < contadorA; i++) {
+            System.out.println("\nDigite as 5 notas do aluno " + alunos[i] + ":");
+            double[] notas = new double[5];
+            for (int j = 0; j < 5; j++) {
+                System.out.print("Nota " + (j + 1) + ": ");
+                notas[j] = scanner.nextDouble();
+            }
+            double soma = 0;
+            for (double nota : notas) {
+                soma += nota;
+            }
+            double media = soma / notas.length;
+
+            double maior = notas[0];
+            double menor = notas[0];
+            for (double nota : notas) {
+                if (nota > maior) {
+                    maior = nota;
+                }
+                if (nota < menor) {
+                    menor = nota;
+                }
+            }
+String classificar;
+            if (media >= 7) {
+                classificar = "Aprovado";
+            } else if (media < 5) {
+                classificar = "Reprovado";
+            } else {
+                classificar = "Em recuperação";
+            }
+            System.out.println("\nAluno: " + alunos[i]);
+            System.out.println("Média: " + media);
+            System.out.println("Maior nota: " + maior);
+            System.out.println("Menor nota: " + menor);
+            System.out.println("Classificação: " + classificar);
+
+            scanner.nextLine();
+    }
+        scanner.close();
+}
+}
